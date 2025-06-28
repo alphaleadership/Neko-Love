@@ -108,6 +108,6 @@ GET http://localhost:3030/api/v4/neko
 
 To access the image directly (after receiving the URL from the JSON response):
 
-Another version of the project :
+# Another version of the project :
 
 - → Rust [reinacchi](https://github.com/reinacchi/Neko-Love/tree/rust)
