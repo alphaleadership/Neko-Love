@@ -31,7 +31,7 @@ module.exports =async ({query,nomBaseQuery})=> {
                 fs.mkdirSync(`./assets/${nomBaseQuery}`)
               }
           // Utilisation de path.basename pour extraire le nom de base de la query
-          const filename = `./assets/${nomBaseQuery}/${fs.readdirSync(`./assets/${nomBaseQuery}`).length}.jpg`;
+          const filename = `./assets/${nomBaseQuery}/${fs.readdirSync(`./assets/${nomBaseQuery}`).length+index}.jpg`;
           const filepath = path.join(__dirname, filename);
           console.log(filepath)
          
