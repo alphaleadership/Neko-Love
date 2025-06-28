@@ -1,0 +1,25 @@
+{
+  "name": "neko-love",
+  "version": "1.0.0",
+  "description": "> A community-powered rewrite of the original Neko-Love API, rebuilt in Go with the Fiber web framework.",
+  "main": "imagemanager.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alphaleadership/Neko-Love.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/alphaleadership/Neko-Love/issues"
+  },
+  "homepage": "https://github.com/alphaleadership/Neko-Love#readme",
+  "dependencies": {
+    "google-img-scrap": "^1.1.4",
+    "piscina": "^5.1.2"
+  }
+}
