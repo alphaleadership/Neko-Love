@@ -110,4 +110,4 @@ To access the image directly (after receiving the URL from the JSON response):
 
 # Another version of the project :
 
-- → Rust [reinacchi](https://github.com/reinacchi/Neko-Love/tree/rust)
+- Rust (Framework Axum) [reinacchi](https://github.com/reinacchi/Neko-Love/tree/rust)
