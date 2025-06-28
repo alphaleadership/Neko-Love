@@ -67,7 +67,7 @@ Make sure you have **Go installed** (version 1.18+ recommended):
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Otaku17/neko-love-go.git
+git clone https://github.com/Otaku17/neko-love.git
 cd neko-love-go
 ```
 
