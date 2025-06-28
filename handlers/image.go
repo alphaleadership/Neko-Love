@@ -1,37 +1,37 @@
 package handlers
 
 import (
+	"errors"
 	"math/rand"
 	"os"
-	"path/filepath"
-	"time"
-
-	"github.com/gofiber/fiber/v2"
 )
 
-// GetRandomImage returns a Fiber handler that serves a random image file from the specified folder.
-// The handler reads all files in the given folder, selects one at random, and responds with a JSON
-// object containing the URL to the selected image. If no images are found or an error occurs while
-// reading the directory, it responds with a 500 status and an error message.
+// PickRandomImageName selects a random file name from the specified directory path.
+// It returns the name of a randomly chosen file (not a directory) within the given path.
+// If the directory cannot be read or contains no files, an error is returned.
 //
 // Parameters:
-//   - folder: The path to the directory containing image files.
+//   path - the directory path to search for files.
 //
 // Returns:
-//   - fiber.Handler: An HTTP handler function for serving a random image URL.
-func GetRandomImage(folder string) fiber.Handler {
-	return func(c *fiber.Ctx) error {
-		files, err := os.ReadDir(folder)
-		if err != nil || len(files) == 0 {
-			return c.Status(500).JSON(fiber.Map{"error": "no images found"})
-		}
-
-		rand.Seed(time.Now().UnixNano())
-		randomFile := files[rand.Intn(len(files))].Name()
-		category := filepath.Base(folder)
-
-		return c.JSON(fiber.Map{
-			"url": "/static/" + category + "/" + randomFile,
-		})
+//   string - the randomly selected file name.
+//   error  - an error if the directory cannot be read or contains no files.
+func PickRandomImageName(path string) (string, error) {
+	files, err := os.ReadDir(path)
+	if err != nil {
+		return "", err
 	}
+
+	var list []string
+	for _, f := range files {
+		if !f.IsDir() {
+			list = append(list, f.Name())
+		}
+	}
+
+	if len(list) == 0 {
+		return "", errors.New("no image found")
+	}
+
+	return list[rand.Intn(len(list))], nil
 }

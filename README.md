@@ -35,7 +35,7 @@ This API **is not hosted by the original author**.
 
 ```json
 {
-  "url": "/images/neko/neko_04.png"
+  "url": "http://localhost:3030/api/images/neko/04.webp"
 }
 ```
 
@@ -93,13 +93,6 @@ Want to add a new image category?
 
 1. Create a folder inside `assets/<name>`
 2. Add your image files there
-3. Add a new route in `routes/image_routes.go`
-
-Example:
-
-```go
-v1.Get("/pat", handlers.GetRandomImage("assets/pat"))
-```
 
 ---
 
@@ -107,7 +100,7 @@ Thanks to everyone who used the original Neko-Love, and to all those who want to
 
 ## 🔍 Example API Call
 
-To get a random image (returns `{ "url": "/images/neko/04.webp" }`):
+To get a random image (returns `{ "url": "http://localhost:3030/api/images/neko/04.webp" }`):
 
 ```
 GET http://localhost:3030/api/v4/neko
@@ -116,5 +109,5 @@ GET http://localhost:3030/api/v4/neko
 To access the image directly (after receiving the URL from the JSON response):
 
 ```
-http://localhost:3030/images/neko/04.webp
+
 ```

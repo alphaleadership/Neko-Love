@@ -2,22 +2,20 @@ package main
 
 import (
 	"neko-love/routes"
+	"neko-love/services"
 
 	"github.com/gofiber/fiber/v2"
 )
 
-// main initializes and starts the Fiber web server, sets up static file serving from the "./assets" directory,
-// defines API route groups under "/api/v4", and registers application routes using the SetupRoutes function.
-// The server listens on port 3030.
+// main is the entry point of the application. It initializes a new Fiber web server,
+// starts watching for asset changes, sets up the application routes, and begins
+// listening for incoming HTTP requests on port 3030.
 func main() {
 	app := fiber.New()
 
-	app.Static("/images", "./assets")
+	services.WatchAssets()
 
-	api := app.Group("/api")
-	v4 := api.Group("/v4")
-
-	routes.SetupRoutes(v4)
+	routes.SetupRoutes(app)
 
 	app.Listen(":3030")
 }
