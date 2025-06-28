@@ -94,7 +94,7 @@ Want to add a new image category?
 1. Create a folder inside `assets/<name>`
 2. Add your image files there
 
-## No extra routes need to be added to the code since they are managed automatically.
+No extra routes need to be added to the code since they are managed automatically.
 
 Thanks to everyone who used the original Neko-Love, and to all those who want to bring it back with a new twist ✨
 
