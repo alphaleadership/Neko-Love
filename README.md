@@ -47,8 +47,8 @@ This API **is not hosted by the original author**.
 
 > After the original API was shut down, several community members asked if they could bring it back. Unfortunately, the original source code was lost. This rewrite aims to provide a fresh, modern foundation.
 
-- ✅ Easier to maintain  
-- ✅ Fast and lightweight (Go + Fiber)  
+- ✅ Easier to maintain
+- ✅ Fast and lightweight (Go + Fiber)
 - ✅ Clean structure for contributions
 
 ---
@@ -104,17 +104,17 @@ GET /api/v4/filters/:filter?image=<url>
 
 ### 🧪 Available Filters
 
-| Filter        | Description                                 |
-|---------------|---------------------------------------------|
-| `blurple`     | Applies a Discord blurple color overlay     |
-| `fuchsia`     | Fuchsia / pinkish recoloring                |
-| `glitch`      | RGB split + distortion effect               |
-| `neon`        | Glowing edge highlights                     |
-| `deepfry`     | Chaotic contrast & saturation (meme style)  |
-| `posterize`   | Reduces color depth to retro/flat look      |
-| `pixelate`    | Pixel art style                             |
-| `vaporwave`   | Retro 90s purple-cyan aesthetic             |
-| `anime_outline` | Anime-style black outlines               |
+| Filter          | Description                                |
+| --------------- | ------------------------------------------ |
+| `blurple`       | Applies a Discord blurple color overlay    |
+| `fuchsia`       | Fuchsia / pinkish recoloring               |
+| `glitch`        | RGB split + distortion effect              |
+| `neon`          | Glowing edge highlights                    |
+| `deepfry`       | Chaotic contrast & saturation (meme style) |
+| `posterize`     | Reduces color depth to retro/flat look     |
+| `pixelate`      | Pixel art style                            |
+| `vaporwave`     | Retro 90s purple-cyan aesthetic            |
+| `anime_outline` | Anime-style black outlines                 |
 
 ---
 
@@ -122,17 +122,17 @@ GET /api/v4/filters/:filter?image=<url>
 
 #### PNG
 
-Original | With `blurple`
-:--:|:--:
-![Original PNG](examples/original.png) | ![Blurple PNG](examples/blurple.png)
+|               Original                |           With `blurple`            |
+| :-----------------------------------: | :---------------------------------: |
+| ![Original PNG](example/original.png) | ![Blurple PNG](example/blurple.png) |
 
 #### GIF
 
-Original | With `blurple`
-:--:|:--:
-![Original GIF](examples/original.gif) | ![Blurple GIF](examples/blurple.gif)
+|               Original                |           With `blurple`            |
+| :-----------------------------------: | :---------------------------------: |
+| ![Original GIF](example/original.gif) | ![Blurple GIF](example/blurple.gif) |
 
-The following filters are currently implemented and showcased in the [`Examples`](examples/) folder of the project:
+The following filters are currently implemented and showcased in the [`Examples`](example/) folder of the project:
 
 You can test a filter with a public image URL like this:
 
