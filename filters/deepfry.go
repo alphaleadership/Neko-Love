@@ -11,6 +11,11 @@ import (
 	_ "github.com/chai2010/webp"
 )
 
+// Deepfry applies a "deep-fry" effect to the given image by increasing saturation,
+// contrast, and shifting the color balance towards red-orange tones. This effect
+// is achieved by manipulating the RGB channels of each pixel, resulting in a
+// visually exaggerated and stylized image. The function returns a new image with
+// the applied effect, preserving the original image's dimensions.
 func Deepfry(img image.Image) image.Image {
 	bounds := img.Bounds()
 	dst := image.NewRGBA(bounds)
@@ -23,7 +28,6 @@ func Deepfry(img image.Image) image.Image {
 			g8 := float64(g >> 8)
 			b8 := float64(b >> 8)
 
-			// Augmenter saturation, contraste et teinte rouge-orange
 			r8 = math.Min(255, r8*1.8+50)
 			g8 = math.Min(255, g8*1.4)
 			b8 = math.Min(255, b8*0.8)

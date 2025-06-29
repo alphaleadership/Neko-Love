@@ -10,17 +10,23 @@ import (
 	_ "github.com/chai2010/webp"
 )
 
-// Fuchsia applies a custom "fuchsia" color filter to the given image.
-// The filter maps the luminance of each pixel to a specific color palette
-// with fuchsia and dark tones, creating a stylized effect. The alpha channel
-// is preserved from the original image.
+// Amber applies an "amber" color filter to the provided image.Image and returns a new image.Image.
+// The filter maps each pixel's luminance to a specific color palette to create an amber-toned effect.
+// The output image preserves the alpha channel of the original image.
+//
+// The mapping is as follows based on luminance:
+//   - lum > 0.92: white (255, 255, 255)
+//   - lum > 0.7: amber (255, 191, 73)
+//   - lum > 0.45: brown (120, 70, 30)
+//   - lum >= 0.15: dark gray (35, 39, 42)
+//   - otherwise: dark gray (35, 39, 42)
 //
 // Parameters:
-//   img image.Image - The source image to be filtered.
+//   img image.Image: The source image to apply the filter to.
 //
 // Returns:
-//   image.Image - A new image with the fuchsia filter applied.
-func Fuchsia(img image.Image) image.Image {
+//   image.Image: A new image with the amber filter applied.
+func Amber(img image.Image) image.Image {
 	bounds := img.Bounds()
 	dst := image.NewRGBA(bounds)
 
@@ -39,9 +45,9 @@ func Fuchsia(img image.Image) image.Image {
 			case lum > 0.92:
 				nr, ng, nb = 255, 255, 255
 			case lum > 0.7:
-				nr, ng, nb = 192, 88, 168
+				nr, ng, nb = 255,191,73
 			case lum > 0.45:
-				nr, ng, nb = 152, 40, 128
+				nr, ng, nb = 120,70,30
 			case lum >= 0.15:
 				nr, ng, nb = 35, 39, 42
 			default:

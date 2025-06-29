@@ -10,17 +10,17 @@ import (
 	_ "github.com/chai2010/webp"
 )
 
-// Fuchsia applies a custom "fuchsia" color filter to the given image.
-// The filter maps the luminance of each pixel to a specific color palette
-// with fuchsia and dark tones, creating a stylized effect. The alpha channel
-// is preserved from the original image.
+// Aqua applies an "aqua" themed filter to the provided image.
+// The filter analyzes the luminance of each pixel and maps it to a specific color palette
+// that emphasizes blue and cyan tones, creating an aquatic effect.
+// The resulting image preserves the original alpha channel.
 //
 // Parameters:
-//   img image.Image - The source image to be filtered.
+//   img image.Image - The source image to apply the filter to.
 //
 // Returns:
-//   image.Image - A new image with the fuchsia filter applied.
-func Fuchsia(img image.Image) image.Image {
+//   image.Image - A new image with the aqua filter applied.
+func Aqua(img image.Image) image.Image {
 	bounds := img.Bounds()
 	dst := image.NewRGBA(bounds)
 
@@ -35,13 +35,14 @@ func Fuchsia(img image.Image) image.Image {
 			lum := (0.299*r8 + 0.587*g8 + 0.114*b8) / 255
 
 			var nr, ng, nb uint8
+
 			switch {
-			case lum > 0.92:
+			case lum >= 0.92:
 				nr, ng, nb = 255, 255, 255
-			case lum > 0.7:
-				nr, ng, nb = 192, 88, 168
-			case lum > 0.45:
-				nr, ng, nb = 152, 40, 128
+			case lum >= 0.7:
+				nr, ng, nb = 80,220,255
+			case lum >= 0.45:
+				nr, ng, nb = 15,100,120
 			case lum >= 0.15:
 				nr, ng, nb = 35, 39, 42
 			default:

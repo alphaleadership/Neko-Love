@@ -10,6 +10,16 @@ import (
 	_ "github.com/chai2010/webp"
 )
 
+// Vaporwave applies a "vaporwave" color filter effect to the given image.
+// This effect boosts the red and blue (rose and cyan) channels, slightly reduces the green channel,
+// and adds a pinkish-cyan tint to the image, reminiscent of the vaporwave aesthetic.
+// The function returns a new image.Image with the filter applied.
+//
+// Parameters:
+//   img image.Image - The source image to apply the vaporwave filter to.
+//
+// Returns:
+//   image.Image - A new image with the vaporwave filter effect applied.
 func Vaporwave(img image.Image) image.Image {
 	bounds := img.Bounds()
 	dst := image.NewRGBA(bounds)
@@ -21,7 +31,6 @@ func Vaporwave(img image.Image) image.Image {
 			g8 := float64(g >> 8)
 			b8 := float64(b >> 8)
 
-			// Boost rose et cyan, réduire vert
 			newR := clamp8(int(r8*1.2 + 30))
 			newG := clamp8(int(g8 * 0.9))
 			newB := clamp8(int(b8*1.2 + 20))

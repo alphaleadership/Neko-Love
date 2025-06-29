@@ -11,6 +11,15 @@ import (
 	_ "github.com/chai2010/webp"
 )
 
+// Glitch applies a "glitch" visual effect to the given image by randomly shifting the red, green, and blue channels
+// horizontally on each scanline, and by adding several random horizontal color bands. This creates a distorted,
+// glitch-art appearance. The function returns a new image with the effect applied.
+//
+// Parameters:
+//   img image.Image - The source image to which the glitch effect will be applied.
+//
+// Returns:
+//   image.Image - A new image with the glitch effect applied.
 func Glitch(img image.Image) image.Image {
 	bounds := img.Bounds()
 	dst := image.NewRGBA(bounds)
@@ -18,7 +27,6 @@ func Glitch(img image.Image) image.Image {
 	height := bounds.Dy()
 
 	for y := bounds.Min.Y; y < bounds.Max.Y; y++ {
-		// Décalages aléatoires R, G, B pour chaque ligne
 		offsetR := rand.Intn(6) - 3
 		offsetG := rand.Intn(6) - 3
 		offsetB := rand.Intn(6) - 3
@@ -41,7 +49,6 @@ func Glitch(img image.Image) image.Image {
 		}
 	}
 
-	// Ajout de bandes aléatoires
 	for i := 0; i < 5; i++ {
 		yStart := rand.Intn(height)
 		bandHeight := rand.Intn(10) + 5
@@ -63,6 +70,9 @@ func Glitch(img image.Image) image.Image {
 	return dst
 }
 
+// clamp restricts the integer value v to be within the range [min, max].
+// If v is less than min, min is returned. If v is greater than max, max is returned.
+// Otherwise, v is returned unchanged.
 func clamp(v, min, max int) int {
 	if v < min {
 		return min
@@ -73,6 +83,9 @@ func clamp(v, min, max int) int {
 	return v
 }
 
+// clamp8 limits the input integer v to the range [0, 255] and returns it as a uint8.
+// If v is less than 0, it returns 0. If v is greater than 255, it returns 255.
+// Otherwise, it returns v converted to uint8.
 func clamp8(v int) uint8 {
 	if v < 0 {
 		return 0

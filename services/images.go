@@ -69,7 +69,7 @@ func ProcessGIF(filterName string, g *gif.GIF) (*gif.GIF, error) {
 }
 
 // ApplyFilter applies the specified filter to the provided image and returns the resulting image.
-// Supported filters include: "blurple", "fuchsia", "glitch", "neon", "deepfry", "posterize", "pixelate", "vaporwave", and "anime_outline".
+// Supported filters include: "blurple", "fuchsia", "glitch", "neon", "deepfry", "posterize", "pixelate", "vaporwave", "anime_outline".... .
 // If an unknown filter is provided, the original image is returned unmodified.
 //
 // Parameters:
@@ -83,26 +83,42 @@ func ApplyFilter(filter string, img image.Image) image.Image {
 	draw.Draw(rgba, rgba.Bounds(), img, img.Bounds().Min, draw.Src)
 
 	switch filter {
-	case "blurple":
-		return filters.Blurple(rgba)
-	case "fuchsia":
-		return filters.Fuchsia(rgba)
-	case "glitch":
-		return filters.Glitch(rgba)
-	case "neon":
-		return filters.Neon(rgba)
-	case "deepfry":
-		return filters.Deepfry(rgba)
-	case "posterize":
-		return filters.Posterize(rgba)
-	case "pixelate":
-		return filters.Pixelate(rgba)
-	case "vaporwave":
-		return filters.Vaporwave(rgba)
-	case "anime_outline":
-		return filters.AnimeOutline(rgba)
-	default:
-		return rgba
+		case "blurple":
+			return filters.Blurple(rgba)
+		case "fuchsia":
+			return filters.Fuchsia(rgba)
+		case "glitch":
+			return filters.Glitch(rgba)
+		case "poppink":
+			return filters.PopPink(rgba)
+		case "deepfry":
+			return filters.Deepfry(rgba)
+		case "posterize":
+			return filters.Posterize(rgba)
+		case "pixelate":
+			return filters.Pixelate(rgba)
+		case "vaporwave":
+			return filters.Vaporwave(rgba)
+		case "anime_outline":
+			return filters.AnimeOutline(rgba)
+		case "crimson":
+			return filters.Crimson(rgba)
+		case "amber":
+			return filters.Amber(rgba)
+		case "mint":
+			return filters.Mint(rgba)
+		case "aqua":
+			return filters.Aqua(rgba)
+		case "sunset":
+			return filters.Sunset(rgba)
+		case "bubblegum":
+			return filters.Bubblegum(rgba)
+		case "negative":
+			return filters.Negative(rgba)
+		case "greyscale":
+			return filters.Greyscale(rgba)
+		default:
+			return rgba
 	}
 }
 

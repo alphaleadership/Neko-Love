@@ -10,10 +10,18 @@ import (
 	_ "github.com/chai2010/webp"
 )
 
+// Pixelate applies a pixelation effect to the given image by dividing it into blocks of fixed size
+// and replacing each block with its average color. The function returns a new image with the effect applied.
+//
+// Parameters:
+//   - img: The source image to be pixelated.
+//
+// Returns:
+//   - image.Image: A new image with the pixelation effect applied.
 func Pixelate(img image.Image) image.Image {
 	bounds := img.Bounds()
 	dst := image.NewRGBA(bounds)
-	blockSize := 8
+	blockSize := 6
 
 	for y := bounds.Min.Y; y < bounds.Max.Y; y += blockSize {
 		for x := bounds.Min.X; x < bounds.Max.X; x += blockSize {

@@ -10,6 +10,18 @@ import (
 	_ "github.com/chai2010/webp"
 )
 
+// AnimeOutline applies a simple edge detection filter to the given image.
+// It highlights the outlines by comparing the color differences between each pixel
+// and its right and bottom neighbors. If the combined color difference exceeds a
+// specified threshold, the pixel is set to black (indicating an edge); otherwise,
+// the original color is retained. The result is a new image with emphasized outlines,
+// suitable for creating an "anime-style" outline effect.
+//
+// Parameters:
+//   img image.Image - The source image to process.
+//
+// Returns:
+//   image.Image - A new image with detected outlines.
 func AnimeOutline(img image.Image) image.Image {
 	bounds := img.Bounds()
 	dst := image.NewRGBA(bounds)
@@ -40,6 +52,7 @@ func AnimeOutline(img image.Image) image.Image {
 	return dst
 }
 
+// absDiff returns the absolute difference between two uint32 values a and b.
 func absDiff(a, b uint32) uint32 {
 	if a > b {
 		return a - b

@@ -10,17 +10,17 @@ import (
 	_ "github.com/chai2010/webp"
 )
 
-// Fuchsia applies a custom "fuchsia" color filter to the given image.
-// The filter maps the luminance of each pixel to a specific color palette
-// with fuchsia and dark tones, creating a stylized effect. The alpha channel
-// is preserved from the original image.
+// Crimson applies a custom crimson-themed filter to the provided image.
+// The filter maps each pixel's luminance to a specific color palette,
+// producing a stylized effect with shades of crimson and dark tones.
+// The output image preserves the original alpha channel.
 //
 // Parameters:
 //   img image.Image - The source image to be filtered.
 //
 // Returns:
-//   image.Image - A new image with the fuchsia filter applied.
-func Fuchsia(img image.Image) image.Image {
+//   image.Image - A new image with the crimson filter applied.
+func Crimson(img image.Image) image.Image {
 	bounds := img.Bounds()
 	dst := image.NewRGBA(bounds)
 
@@ -39,9 +39,9 @@ func Fuchsia(img image.Image) image.Image {
 			case lum > 0.92:
 				nr, ng, nb = 255, 255, 255
 			case lum > 0.7:
-				nr, ng, nb = 192, 88, 168
+				nr, ng, nb = 180, 50, 50
 			case lum > 0.45:
-				nr, ng, nb = 152, 40, 128
+				nr, ng, nb = 120, 20, 30
 			case lum >= 0.15:
 				nr, ng, nb = 35, 39, 42
 			default:

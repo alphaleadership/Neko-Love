@@ -10,17 +10,18 @@ import (
 	_ "github.com/chai2010/webp"
 )
 
-// Fuchsia applies a custom "fuchsia" color filter to the given image.
-// The filter maps the luminance of each pixel to a specific color palette
-// with fuchsia and dark tones, creating a stylized effect. The alpha channel
+// Sunset applies a stylized "sunset" filter to the provided image.
+// The filter maps each pixel's luminance to a specific color palette
+// reminiscent of sunset tones. Brighter areas are mapped to lighter colors,
+// while darker areas are mapped to deeper sunset shades. The alpha channel
 // is preserved from the original image.
 //
 // Parameters:
-//   img image.Image - The source image to be filtered.
+//   img image.Image - The source image to apply the sunset filter to.
 //
 // Returns:
-//   image.Image - A new image with the fuchsia filter applied.
-func Fuchsia(img image.Image) image.Image {
+//   image.Image - A new image with the sunset filter applied.
+func Sunset(img image.Image) image.Image {
 	bounds := img.Bounds()
 	dst := image.NewRGBA(bounds)
 
@@ -35,13 +36,14 @@ func Fuchsia(img image.Image) image.Image {
 			lum := (0.299*r8 + 0.587*g8 + 0.114*b8) / 255
 
 			var nr, ng, nb uint8
+
 			switch {
-			case lum > 0.92:
+			case lum >= 0.92:
 				nr, ng, nb = 255, 255, 255
-			case lum > 0.7:
-				nr, ng, nb = 192, 88, 168
-			case lum > 0.45:
-				nr, ng, nb = 152, 40, 128
+			case lum >= 0.7:
+				nr, ng, nb = 255,140,90
+			case lum >= 0.45:
+				nr, ng, nb = 120,60,80
 			case lum >= 0.15:
 				nr, ng, nb = 35, 39, 42
 			default:

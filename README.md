@@ -107,14 +107,22 @@ GET /api/v4/filters/:filter?image=<url>
 | Filter          | Description                                |
 | --------------- | ------------------------------------------ |
 | `blurple`       | Applies a Discord blurple color overlay    |
-| `fuchsia`       | Fuchsia / pinkish recoloring               |
+| `fuchsia`       | Pinkish-magenta recoloring                 |
 | `glitch`        | RGB split + distortion effect              |
-| `neon`          | Glowing edge highlights                    |
+| `poppink`       | Vivid pink saturation filter               |
 | `deepfry`       | Chaotic contrast & saturation (meme style) |
-| `posterize`     | Reduces color depth to retro/flat look     |
-| `pixelate`      | Pixel art style                            |
-| `vaporwave`     | Retro 90s purple-cyan aesthetic            |
-| `anime_outline` | Anime-style black outlines                 |
+| `posterize`     | Reduces color depth to a flat retro look   |
+| `pixelate`      | Low-resolution pixel art effect            |
+| `vaporwave`     | Purple-cyan retro 90s aesthetic            |
+| `anime_outline` | Adds bold anime-style black outlines       |
+| `crimson`       | Strong red tint overlay                    |
+| `amber`         | Warm orange-yellow tint overlay            |
+| `mint`          | Soft turquoise-green pastel tint           |
+| `aqua`          | Bright cyan/teal tint overlay              |
+| `sunset`        | Pink-orange gradient inspired by sunsets   |
+| `bubblegum`     | Light pastel pink & blue tint              |
+| `negative`      | Inverts all colors (negative image)        |
+| `greyscale`     | Converts image to grayscale                |
 
 ---
 
