@@ -47,8 +47,8 @@ This API **is not hosted by the original author**.
 
 > After the original API was shut down, several community members asked if they could bring it back. Unfortunately, the original source code was lost. This rewrite aims to provide a fresh, modern foundation.
 
-- ✅ Easier to maintain
-- ✅ Fast and lightweight (Go + Fiber)
+- ✅ Easier to maintain  
+- ✅ Fast and lightweight (Go + Fiber)  
 - ✅ Clean structure for contributions
 
 ---
@@ -87,6 +87,63 @@ go run main.go
 
 ---
 
+## 🎨 Filters
+
+The API also includes an **image filtering endpoint**:
+
+```
+GET /api/v4/filters/:filter?image=<url>
+```
+
+### ✅ Supported formats
+
+- JPEG
+- PNG
+- WEBP
+- **GIF** (animated) – frame-by-frame filtering is supported.
+
+### 🧪 Available Filters
+
+| Filter        | Description                                 |
+|---------------|---------------------------------------------|
+| `blurple`     | Applies a Discord blurple color overlay     |
+| `fuchsia`     | Fuchsia / pinkish recoloring                |
+| `glitch`      | RGB split + distortion effect               |
+| `neon`        | Glowing edge highlights                     |
+| `deepfry`     | Chaotic contrast & saturation (meme style)  |
+| `posterize`   | Reduces color depth to retro/flat look      |
+| `pixelate`    | Pixel art style                             |
+| `vaporwave`   | Retro 90s purple-cyan aesthetic             |
+| `anime_outline` | Anime-style black outlines               |
+
+---
+
+### 📷 Example Renders
+
+#### PNG
+
+Original | With `blurple`
+:--:|:--:
+![Original PNG](exemples/original.png) | ![Blurple PNG](exemples/blurple.png)
+
+#### GIF
+
+Original | With `blurple`
+:--:|:--:
+![Original GIF](exemples/original.gif) | ![Blurple GIF](exemples/blurple.gif)
+
+The following filters are currently implemented and showcased in the [`examples/`](examples/) folder of the project:
+
+You can test a filter with a public image URL like this:
+
+```
+http://localhost:3030/api/v4/filters/deepfry?image=https://example.com/image.png
+```
+
+You can also pass animated GIFs, and the API will apply the filter to each frame before returning a new animated result.
+
+---
+
 ## 🤝 Contributing
 
 Want to add a new image category?
@@ -98,6 +155,8 @@ No extra routes need to be added to the code since they are managed automaticall
 
 Thanks to everyone who used the original Neko-Love, and to all those who want to bring it back with a new twist ✨
 
+---
+
 ## 🔍 Example API Call
 
 To get a random image (returns `{ "url": "http://localhost:3030/api/images/neko/04.webp" }`):
@@ -108,6 +167,8 @@ GET http://localhost:3030/api/v4/neko
 
 To access the image directly (after receiving the URL from the JSON response):
 
-# Another version of the project :
+---
 
-- Rust (Framework Axum) [reinacchi](https://github.com/reinacchi/Neko-Love/tree/rust)
+## 🔄 Another version of the project:
+
+- Rust (Framework Axum) by [reinacchi](https://github.com/reinacchi/Neko-Love/tree/rust)
