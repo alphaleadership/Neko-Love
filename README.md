@@ -140,8 +140,6 @@ You can test a filter with a public image URL like this:
 http://localhost:3030/api/v4/filters/deepfry?image=https://example.com/image.png
 ```
 
-You can also pass animated GIFs, and the API will apply the filter to each frame before returning a new animated result.
-
 ---
 
 ## 🤝 Contributing
