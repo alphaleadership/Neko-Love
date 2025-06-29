@@ -124,15 +124,15 @@ GET /api/v4/filters/:filter?image=<url>
 
 Original | With `blurple`
 :--:|:--:
-![Original PNG](exemples/original.png) | ![Blurple PNG](exemples/blurple.png)
+![Original PNG](examples/original.png) | ![Blurple PNG](examples/blurple.png)
 
 #### GIF
 
 Original | With `blurple`
 :--:|:--:
-![Original GIF](exemples/original.gif) | ![Blurple GIF](exemples/blurple.gif)
+![Original GIF](examples/original.gif) | ![Blurple GIF](examples/blurple.gif)
 
-The following filters are currently implemented and showcased in the [`examples/`](examples/) folder of the project:
+The following filters are currently implemented and showcased in the [`Examples`](examples/) folder of the project:
 
 You can test a filter with a public image URL like this:
 
