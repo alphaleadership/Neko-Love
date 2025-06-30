@@ -35,7 +35,7 @@ This API **is not hosted by the original author**.
 
 ```json
 {
-  "url": "http://localhost:3030/api/images/neko/04.webp"
+  "url": "http://localhost:3030/api/v4/images/neko/04.webp"
 }
 ```
 
