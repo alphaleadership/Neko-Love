@@ -30,7 +30,7 @@ This API **is not hosted by the original author**.
 
 ## 🚀 Quick Overview
 
-- Each route returns a random image from a local folder (e.g. `/assets/neko/`)
+- Each route returns a random image from a locally cached folder (e.g. /assets/neko/), improving response times by avoiding repeated disk reads.
 - Example JSON response:
 
 ```json
@@ -130,8 +130,8 @@ GET /api/v4/filters/:filter?image=<url>
 
 #### JPEG (PNG/JPG...)
 
-|               Original                |           With `blurple`            |
-| :-----------------------------------: | :---------------------------------: |
+|                Original                 |            With `blurple`             |
+| :-------------------------------------: | :-----------------------------------: |
 | ![Original JPEG](example/original.jpeg) | ![Blurple JPEG](example/blurple.jpeg) |
 
 #### GIF
