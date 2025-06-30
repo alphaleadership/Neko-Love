@@ -68,7 +68,7 @@ Make sure you have **Go installed** (version 1.18+ recommended):
 
 ```bash
 git clone https://github.com/Otaku17/neko-love.git
-cd neko-love-go
+cd neko-love
 ```
 
 2. Install dependencies:
@@ -128,11 +128,11 @@ GET /api/v4/filters/:filter?image=<url>
 
 ### 📷 Example Renders
 
-#### PNG
+#### JPEG (PNG/JPG...)
 
 |               Original                |           With `blurple`            |
 | :-----------------------------------: | :---------------------------------: |
-| ![Original PNG](example/original.png) | ![Blurple PNG](example/blurple.png) |
+| ![Original JPEG](example/original.jpeg) | ![Blurple JPEG](example/blurple.jpeg) |
 
 #### GIF
 
