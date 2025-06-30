@@ -6,7 +6,7 @@ import (
 	"image"
 	"image/gif"
 	"io"
-	"neko-love/handlers"
+	"neko-love/services/cache"
 	"net/http"
 	"strings"
 
@@ -18,24 +18,17 @@ import (
 // SetupRoutes configures the HTTP routes for the Fiber application.
 // It registers the following endpoints:
 //   - GET /api/v4/:category: Returns a random image URL from the specified category.
-//   - GET /api/v4/images/:category/:name: Serves the image file with the given name from the specified category.
-//   - GET /api/v4/filters/:filter: Applies the specified image filter to an image provided via the "image" query parameter and returns the processed image.
+//   - GET /api/v4/images/:category/:name: Serves the image file for the given category and name.
+//   - GET /api/v4/filters/:filter: Applies the specified filter to an image provided via query parameter and returns the result.
+//   - GET /debug/cache/:category: Returns debug information about cached files in the specified category.
 //
-// The function sets appropriate cache control headers for dynamic endpoints and handles errors such as missing categories, images, or invalid filters.
+// The function expects a "cacheAssets" local variable of type *cache.ImageCache to be set in the Fiber context.
 func SetupRoutes(app *fiber.App) {
 	app.Get("/api/v4/:category", func(c *fiber.Ctx) error {
 		category := c.Params("category")
-		path, exists := services.GetCategoryPath(category)
-		if !exists {
-			return fiber.ErrNotFound
-		}
+		path, _ := c.Locals("cacheAssets").(*cache.ImageCache).GetRandom(category)
 
-		imageName, err := handlers.PickRandomImageName(path)
-		if err != nil {
-			return fiber.ErrNotFound
-		}
-
-		imageURL := fmt.Sprintf("%s/api/v4/images/%s/%s", c.BaseURL(), category, imageName)
+		imageURL := fmt.Sprintf("%s/api/v4/images/%s/%s", c.BaseURL(), category, path)
 
 		c.Set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate")
 		c.Set("Pragma", "no-cache")
@@ -49,13 +42,15 @@ func SetupRoutes(app *fiber.App) {
 	app.Get("/api/v4/images/:category/:name", func(c *fiber.Ctx) error {
 		category := c.Params("category")
 		name := c.Params("name")
-		path, exists := services.GetCategoryPath(category)
-		if !exists {
+
+		cache := c.Locals("cacheAssets").(*cache.ImageCache)
+
+		path, ok := cache.GetImagePath(category, name)
+		if !ok {
 			return fiber.ErrNotFound
 		}
 
-		imagePath := fmt.Sprintf("%s/%s", path, name)
-		return c.SendFile(imagePath)
+		return c.SendFile(path)
 	})
 
 	app.Get("/api/v4/filters/:filter", func(c *fiber.Ctx) error {
@@ -91,6 +86,16 @@ func SetupRoutes(app *fiber.App) {
 		c.Set("Expires", "0")
 
 		return services.EncodeAndSetContentType(c, result, formatStr)
+	})
+
+	app.Get("/debug/cache/:category", func(c *fiber.Ctx) error {
+		category := c.Params("category")
+		files := c.Locals("cacheAssets").(*cache.ImageCache).GetFiles(category)
+		return c.JSON(fiber.Map{
+			"category": category,
+			"count":    len(files),
+			"files":    files,
+		})
 	})
 }
 

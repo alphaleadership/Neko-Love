@@ -2,7 +2,7 @@ package main
 
 import (
 	"neko-love/routes"
-	"neko-love/services"
+	"neko-love/services/cache"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -13,9 +13,16 @@ import (
 func main() {
 	app := fiber.New()
 
-	services.WatchAssets()
+	cacheAssets, err := cache.New("./assets")
+	if err != nil {
+		panic("Failed to initialize image cache: " + err.Error())
+	}
+
+	app.Use(func(c *fiber.Ctx) error {
+		c.Locals("cacheAssets", cacheAssets)
+		return c.Next()
+	})
 
 	routes.SetupRoutes(app)
-
 	app.Listen(":3030")
 }
