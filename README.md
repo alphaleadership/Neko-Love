@@ -30,16 +30,31 @@ This API **is not hosted by the original author**.
 
 ## 🚀 Quick Overview
 
-- Each route returns a random image from a locally cached folder (e.g. /assets/neko/), improving response times by avoiding repeated disk reads.
+- Each route returns a **random image with metadata** from a locally cached folder (e.g. /assets/neko/), improving response times by avoiding repeated disk reads.
 - Example JSON response:
 
 ```json
 {
-  "url": "http://localhost:3030/api/v4/images/neko/04.webp"
+  "name": "04.webp",
+  "category": "neko",
+  "path": "/api/v4/images/neko/04.webp",
+  "size": "438.2 KB",
+  "mime_type": "image/webp",
+  "modified_at": 1720018294
 }
 ```
 
-- Images are served at `/images/<category>/<image>`
+- Images are served directly at:
+
+```
+/api/v4/images/<category>/<image>
+```
+
+- To get a random image and its metadata, use:
+
+```
+GET /api/v4/<category>
+```
 
 ---
 
@@ -165,13 +180,17 @@ Thanks to everyone who used the original Neko-Love, and to all those who want to
 
 ## 🔍 Example API Call
 
-To get a random image (returns `{ "url": "http://localhost:3030/api/images/neko/04.webp" }`):
+To get a random image (returns a JSON object with metadata):
 
 ```
 GET http://localhost:3030/api/v4/neko
 ```
 
-To access the image directly (after receiving the URL from the JSON response):
+To access the image directly (after receiving the path from the JSON response):
+
+```
+GET http://localhost:3030/api/v4/images/neko/04.webp
+```
 
 ---
 
